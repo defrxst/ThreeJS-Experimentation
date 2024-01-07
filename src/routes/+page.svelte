@@ -1,5 +1,5 @@
 <script>
-
+    import './scripts/three'
 </script>
 
-<canvas class="fixed"></canvas>
+<canvas id="canvas" class="fixed"></canvas>
