@@ -34,7 +34,9 @@ if(browser) {
         }
     }      
       
-    document.body.addEventListener('wheel', moveCamera, {passive: false})
+    document.body.addEventListener('wheel', () => {
+        moveCamera()
+    }, {passive: false})
 
     document.body.addEventListener('resize', () => {
         camera.aspect = window.innerWidth / window.innerHeight;
