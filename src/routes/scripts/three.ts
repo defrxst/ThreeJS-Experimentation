@@ -1,6 +1,6 @@
 import { browser } from '$app/environment'
 import * as THREE from 'three'
-import { OrbitControls } from 'three/examples/jsm/Addons.js'
+import { OrbitControls, TextGeometry, FontLoader } from 'three/examples/jsm/Addons.js'
 
 if(browser) {
     const canvas = document.getElementById('canvas')
@@ -44,6 +44,42 @@ if(browser) {
         camera.updateProjectionMatrix();
     
         renderer.setSize(window.innerWidth, window.innerHeight);
+    })
+
+    // 3D text
+
+    const fontLoader = new FontLoader()
+    fontLoader.load('/Gerhaus_Regular.json', (json) => {
+
+        const text = new THREE.Mesh(
+            new TextGeometry('TYRIN', {
+                font: json,
+                size: 10,
+                height: 3,
+                curveSegments: 12,
+            }),
+            new THREE.MeshBasicMaterial({color: 0xffffff})
+        )
+        const textOutline = new THREE.Mesh(
+            new TextGeometry('TYRN', {
+                font: json,
+                size: 11,
+                height: 4,
+                curveSegments: 12,
+                bevelEnabled: true,
+                bevelSize: 1,
+                bevelThickness: 1
+            }),
+            new THREE.MeshBasicMaterial({color: 0x000000})
+        )
+        text.position.x -= 20
+        text.position.z -= 1 
+        text.rotation.x = -0.5
+        textOutline.rotation.x = -0.5
+        textOutline.position.x -= 21.5
+        textOutline.position.z -= 4
+        
+        scene.add(...[text, textOutline])
     })
 
     function render() {
