@@ -32,6 +32,21 @@ if(browser) {
         } else {
             camera.position.y -= 2
         }
+        if(camera.position.z >= 76) {
+            scene.traverse((object) => {
+                if(object.name === 'textTyrin' || object.name === 'outlineTextTyrin') {
+                    if(object.position.x <= -80) return
+                    object.position.x -= 2
+                    console.log(object.position)
+                }
+            })
+        }
+        scene.traverse((object) => {
+            if(object.name === 'textTyrin' || object.name === 'outlineTextTyrin' && camera.position.y === 0) {
+                object.rotation.x = 0
+            }
+        })
+        console.log(camera.position)
     }      
       
     document.body.addEventListener('wheel', () => {
@@ -75,6 +90,8 @@ if(browser) {
         text.position.x -= 20
         text.position.z -= 1 
         text.rotation.x = -0.5
+        text.name = 'textTyrin'
+        textOutline.name = 'outlineTextTyrin'
         textOutline.rotation.x = -0.5
         textOutline.position.x -= 21.5
         textOutline.position.z -= 4
