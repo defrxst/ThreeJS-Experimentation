@@ -61,6 +61,16 @@ if(browser) {
         renderer.setSize(window.innerWidth, window.innerHeight);
     })
 
+    // Geometries
+
+    const box = new THREE.Mesh(
+        new THREE.BoxGeometry(50, 30, 1),
+        new THREE.MeshBasicMaterial({color: 0xffffff})
+    )
+    box.position.y = 15
+    box.position.z = -10
+    scene.add(box)
+
     // 3D text
 
     const fontLoader = new FontLoader()
