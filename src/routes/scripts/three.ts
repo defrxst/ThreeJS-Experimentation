@@ -37,7 +37,10 @@ if(browser) {
                 if(object.name === 'textTyrin' || object.name === 'outlineTextTyrin') {
                     if(object.position.x <= -80) return
                     object.position.x -= 2
-                    console.log(object.position)
+                }
+                if(object.name === 'box') {
+                    if(object.position.y <= -100) return
+                    object.position.z += 2
                 }
             })
         }
@@ -67,6 +70,7 @@ if(browser) {
         new THREE.BoxGeometry(50, 30, 1),
         new THREE.MeshBasicMaterial({color: 0xffffff})
     )
+    box.name = 'box'
     box.position.y = 15
     box.position.z = -10
     scene.add(box)
